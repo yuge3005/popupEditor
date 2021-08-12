@@ -28,20 +28,15 @@ package controler{
 		
 		public function BakgroundEditorControl(){
 			
-			drawBackground( 0xFFEEFF, new Rectangle( -20,0, 800, 270 ) );
-			addColorChooser( 0, 20, 130, "backgroundColor:", onColorChange );
+			drawBackground( 0xFFEEFF, new Rectangle( -20,0, 630, 270 ) );
 
 			addTextureChooser();
 			
-			addButtonAt( 620, 20, 110, "save", onSaveButtonClick );
-			addButtonAt( 620, 60, 110, "load", onLoadButtonClick );
-			addButtonAt( 620, 100, 110, "clearBackgoudInfo", onClearButtonClick );			
+			addButtonAt( 470, 20, 110, "save", onSaveButtonClick );
+			addButtonAt( 470, 60, 110, "load", onLoadButtonClick );
+			addButtonAt( 470, 100, 110, "clearBackgoudInfo", onClearButtonClick );			
 			
-			addCheckBox( 615, 140, 130, "lock the background", onCheckBoxChange );
-		}
-		
-		protected function onColorChange(event:ColorPickerEvent):void{
-			report( EditorEvent.COLOR_CHANGE, event.color );
+			addCheckBox( 465, 140, 130, "lock the background", onCheckBoxChange );
 		}
 		
 		private function onSaveButtonClick(event:MouseEvent):void{
@@ -62,15 +57,15 @@ package controler{
 		
 		private function addTextureChooser():void	{
 			
-			textureList = createComboBox( 0, 100 );
+			textureList = createComboBox( 0, 60 );
 			
-			addButtonAt( 0, 60, 130, "choose texture file", onTextureButton );			
-			addButtonAt( 0, 140, 130, "choose Animation file", onAnimationButton );
-			addButtonAt( 0, 180, 130, "choose Animation PNG", onAnimationPicButton );
+			addButtonAt( 0, 20, 130, "choose texture file", onTextureButton );
+			addButtonAt( 0, 100, 130, "choose Animation file", onAnimationButton );
+			addButtonAt( 0, 140, 130, "choose Animation PNG", onAnimationPicButton );
 			
-			animationList = createComboBox( 0, 220, 130 );
+			animationList = createComboBox( 0, 180, 130 );
 			
-			backgroundItems = addItemAt( new List, 180, 20, 400 ) as List;
+			backgroundItems = addItemAt( new List, 150, 20, 300 ) as List;
 			backgroundItems.height = 190;
 			backgroundItems.addEventListener( KeyboardEvent.KEY_DOWN, onItemKeyDown );
 			

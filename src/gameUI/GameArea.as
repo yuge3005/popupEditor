@@ -9,7 +9,7 @@ package gameUI{
 	public class GameArea extends EditorItem{
 		
 		public static const gameAreaWidth: int = 750;
-		public static const gameAreaHeight: int = 1264;
+		public static const gameAreaHeight: int = 1624;
 		
 		/**当前选中物体*/
 		protected var currentItem: Sprite;

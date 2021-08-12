@@ -1,5 +1,7 @@
 package
 {
+	import flash.display.StageScaleMode;
+	
 	import controler.BakgroundEditorControl;
 	
 	import gameUI.BackgroundLayer;
@@ -7,7 +9,7 @@ package
 	import settings.EditorEvent;
 	import settings.EditorItem;
 	
-	[SWF(width = "1550", height = "1624", frameRate = "30", backgroundColor = "#ffffff")]	
+	[SWF(width = "1380", height = "1624", frameRate = "30", backgroundColor = "#ffffff")]	
 	public class popupEditor extends EditorItem
 	{
 		/**背景区域*/
@@ -18,6 +20,7 @@ package
 
 		public function popupEditor()
 		{
+			stage.scaleMode = StageScaleMode.SHOW_ALL;
 			initBackgroundEditor();
 		}
 		

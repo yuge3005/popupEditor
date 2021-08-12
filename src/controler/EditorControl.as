@@ -10,7 +10,6 @@ package controler{
 	import fl.controls.ComboBox;
 	import fl.controls.Label;
 	import fl.controls.NumericStepper;
-	import fl.controls.Slider;
 	import fl.controls.TextInput;
 	import fl.events.ColorPickerEvent;
 	import fl.events.ComponentEvent;

@@ -21,10 +21,6 @@ package controler{
 		
 		/**背景物体表*/
 		private var backgroundItems: List;
-		/**是否正在编辑extra*/
-		private var isEditingExtra: CheckBox;
-		/**显示extra图片名称的文本框*/
-		private var extraPicture: TextInput;
 		
 		public function BakgroundEditorControl(){
 			
@@ -68,10 +64,6 @@ package controler{
 			backgroundItems = addItemAt( new List, 150, 20, 300 ) as List;
 			backgroundItems.height = 190;
 			backgroundItems.addEventListener( KeyboardEvent.KEY_DOWN, onItemKeyDown );
-			
-			isEditingExtra = addCheckBox( 180, 220, 130, "is editing Extra", null );
-			extraPicture = addTextInputWithLabel( 280, 220, 140, "picture:", 100 );
-			extraPicture.enabled = false;
 		}
 		
 		protected function onTextureButton(event:MouseEvent):void{
@@ -115,7 +107,7 @@ package controler{
 		
 		protected function onTextureJsonLoaded(event:Event):void{
 			var textureObject: Object = JSON.parse( event.target.data );
-			var textureName: String = textureObject.file;			
+			var textureName: String = textureObject.file;
 			var frames: Object =  textureObject.frames;
 			GameRes.textureData = frames;
 			
@@ -143,19 +135,8 @@ package controler{
 		}
 		
 		override protected function onTextureItemSellect(event:Event):void{
-			if( isEditingExtra.selected ){
-				GameConfigObject.extraUIName = (event.currentTarget as ComboBox).selectedItem.label;
-				resetExtra();
-			}
-			else{
-				var item: Object = (event.currentTarget as ComboBox).selectedItem.label;
-				report( EditorEvent.ADD_ITEM, item );
-			}
-		}
-		
-		private function resetExtra():void{
-			if( GameConfigObject.extraUIName ) extraPicture.text = GameConfigObject.extraUIName;
-			else extraPicture.text = "";
+			var item: Object = (event.currentTarget as ComboBox).selectedItem.label;
+			report( EditorEvent.ADD_ITEM, item );
 		}
 		
 		override protected function onAnimationComboxItemSellect(event:Event):void{
@@ -211,7 +192,6 @@ package controler{
 					}
 				}
 			}
-			if( GameConfigObject.extraUIName )resetExtra();
 		}
 		
 		protected function onCheckBoxChange(event:Event):void{

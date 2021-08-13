@@ -1,5 +1,4 @@
 package gameUI{
-	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;

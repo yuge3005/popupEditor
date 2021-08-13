@@ -1,6 +1,7 @@
 package gameUI{
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
@@ -15,9 +16,14 @@ package gameUI{
 		protected var currentItem: Sprite;
 		
 		public function GameArea(){
+			addEventListener( Event.ADDED_TO_STAGE, onAdd );
+		}
+		
+		private function onAdd( event: Event ): void{
 			var msk: Sprite = new Sprite;
 			drawBackgroundOn( 0, msk );
 			this.mask = msk;
+			this.parent.addChild( this.mask );
 		}
 		
 		protected function drawBackgroundOn( color: uint, target: Sprite = null ):void{

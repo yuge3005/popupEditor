@@ -12,15 +12,6 @@ package settings{
 		
 		public static var tempBackgroundItems: Array;
 		
-		public static var balls: Array;
-		public static var ballSize: Number;
-		public static var ballTextSize: Number;
-		public static var ballNumber: int;
-		
-		public static var payTables: Object = {};
-		
-		public static var card: Object = {};
-		
 		private static var successCallback: Function;
 		
 		public function GameConfigObject(){
@@ -30,6 +21,13 @@ package settings{
 			var obj: Object = {};
 			obj.textureRelativePath = textureRelativePath;
 			obj.backgroundItems = backgroundItems;
+			return obj;
+		}
+		
+		private static function getExporteObject():Object{
+			var obj: Object = {};
+//			obj.textureRelativePath = textureRelativePath;
+//			obj.backgroundItems = backgroundItems;
 			return obj;
 		}
 		
@@ -45,6 +43,12 @@ package settings{
 			var str: String = JSON.stringify( getConfigObject() );
 			var file: FileReference = new FileReference;
 			file.save( str, "game config file name.conf" );
+		}
+		
+		public static function exporte():void{
+			var str: String = JSON.stringify( getExporteObject() );
+			var file: FileReference = new FileReference;
+			file.save( str, "exported file name.json" );
 		}
 		
 		public static function load( successCallback: Function ):void{
@@ -64,30 +68,6 @@ package settings{
 			successCallback();
 			
 			tempBackgroundItems = obj.backgroundItems;
-		}
-		
-		public static function createBalls():void{
-			balls = [];
-			for( var i:int = 0; i < 90; i++ ){
-				balls.push( { index:i } );
-			}
-		}
-		
-		public static function clearBallPath(currentIndex:int):void{
-			balls[ currentIndex ].path = [];
-		}
-		
-		public static function addPathPoint(currentIndex:int,point:Object):void{
-			balls[ currentIndex ].path.push( point );
-		}
-		
-		public static function editPaytable(name:String, obj:Object):void{
-			payTables[name] = obj;
-		}
-		
-		public static function deletePaytable(name:String):void{
-			payTables[name] = null;
-			delete payTables[name];
 		}
 	}
 }

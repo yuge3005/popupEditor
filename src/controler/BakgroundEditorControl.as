@@ -27,6 +27,7 @@ package controler{
 			
 			addButtonAt( 0, 100, 130, "save", onSaveButtonClick );
 			addButtonAt( 0, 140, 130, "load", onLoadButtonClick );
+			addButtonAt( 0, 180, 130, "exported", onExportButtonClick );
 		}
 		
 		private function onSaveButtonClick(event:MouseEvent):void{
@@ -35,6 +36,10 @@ package controler{
 		
 		private function onLoadButtonClick(event:MouseEvent):void{
 			GameConfigObject.load( onLoadSuccess );
+		}
+		
+		private function onExportButtonClick(event:MouseEvent):void{
+			GameConfigObject.exporte();
 		}
 		
 		private function onLoadSuccess():void	{

@@ -14,10 +14,6 @@ package gameUI{
 			drawBackgroundOn( 0 );
 		}
 		
-		public function changeColorTo( color: uint ):void{
-			drawBackgroundOn( color );
-		}
-		
 		public function addBackgroundItem( name: String ):void{
 			var sp: Sprite = GameRes.buildItemByName( name );
 			addGameAreaItem( sp, new Point, EditorEvent.ITEM_CHANGE );

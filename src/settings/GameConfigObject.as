@@ -4,12 +4,11 @@ package settings{
 
 	public class GameConfigObject{
 		
-		public static var backgroundColor: uint;
 		public static var extraUIName: String;
 		
 		public static var textureRelativePath: String;
-		public static var animationRelativePath: String;
-		public static var animationPicturePath: String;
+//		public static var animationRelativePath: String;
+//		public static var animationPicturePath: String;
 		
 		public static var backgroundItems: Array = [];
 		
@@ -31,10 +30,9 @@ package settings{
 		
 		private static function getConfigObject():Object{
 			var obj: Object = {};
-			obj.backgroundColor = backgroundColor;
 			obj.textureRelativePath = textureRelativePath;
-			obj.animationRelativePath = animationRelativePath;
-			obj.animationPicturePath= animationPicturePath;
+//			obj.animationRelativePath = animationRelativePath;
+//			obj.animationPicturePath= animationPicturePath;
 			obj.backgroundItems = backgroundItems;
 			return obj;
 		}
@@ -66,12 +64,11 @@ package settings{
 			trace( "load success" )
 			var obj: Object = JSON.parse( event.target.data );
 			trace( event.target.data )
-			backgroundColor = obj.backgroundColor;
 			textureRelativePath = obj.textureRelativePath;
-			if( obj.animationPicturePath && obj.animationRelativePath ){
-				animationPicturePath = obj.animationPicturePath;
-				animationRelativePath = obj.animationRelativePath;
-			}
+//			if( obj.animationPicturePath && obj.animationRelativePath ){
+//				animationPicturePath = obj.animationPicturePath;
+//				animationRelativePath = obj.animationRelativePath;
+//			}
 			successCallback();
 			
 			tempBackgroundItems = obj.backgroundItems;

@@ -24,15 +24,12 @@ package controler{
 		
 		public function BakgroundEditorControl(){
 			
-			drawBackground( 0xFFEEFF, new Rectangle( -20,0, 630, 270 ) );
+			drawBackground( 0xFFEEFF, new Rectangle( -20,0, 500, 270 ) );
 
 			addTextureChooser();
 			
-			addButtonAt( 470, 20, 110, "save", onSaveButtonClick );
-			addButtonAt( 470, 60, 110, "load", onLoadButtonClick );
-			addButtonAt( 470, 100, 110, "clearBackgoudInfo", onClearButtonClick );			
-			
-			addCheckBox( 465, 140, 130, "lock the background", onCheckBoxChange );
+			addButtonAt( 0, 100, 130, "save", onSaveButtonClick );
+			addButtonAt( 0, 140, 130, "load", onLoadButtonClick );
 		}
 		
 		private function onSaveButtonClick(event:MouseEvent):void{
@@ -47,19 +44,15 @@ package controler{
 			report( EditorEvent.CONFIG_LOADED );
 		}
 		
-		private function onClearButtonClick(event:MouseEvent):void{
-			report( EditorEvent.CLEAR_BACKGROUND );
-		}
-		
 		private function addTextureChooser():void	{
 			
 			textureList = createComboBox( 0, 60 );
 			
 			addButtonAt( 0, 20, 130, "choose texture file", onTextureButton );
-			addButtonAt( 0, 100, 130, "choose Animation file", onAnimationButton );
-			addButtonAt( 0, 140, 130, "choose Animation PNG", onAnimationPicButton );
+//			addButtonAt( 0, 100, 130, "choose Animation file", onAnimationButton );
+//			addButtonAt( 0, 140, 130, "choose Animation PNG", onAnimationPicButton );
 			
-			animationList = createComboBox( 0, 180, 130 );
+//			animationList = createComboBox( 0, 180, 130 );
 			
 			backgroundItems = addItemAt( new List, 150, 20, 300 ) as List;
 			backgroundItems.height = 190;
@@ -70,40 +63,40 @@ package controler{
 			new FilesLoader().selectFile( onTextureFileSellect, "json" );
 		}
 		
-		protected function onAnimationButton(event:MouseEvent):void{
-			new FilesLoader().selectFile( onAnimationFileSellect, "json" );
-		}
-		
-		protected function onAnimationPicButton(event:MouseEvent):void{
-			new FilesLoader().selectFile( onAnimationPictureSellect, "png" );
-		}
+//		protected function onAnimationButton(event:MouseEvent):void{
+//			new FilesLoader().selectFile( onAnimationFileSellect, "json" );
+//		}
+//		
+//		protected function onAnimationPicButton(event:MouseEvent):void{
+//			new FilesLoader().selectFile( onAnimationPictureSellect, "png" );
+//		}
 		
 		protected function onTextureFileSellect(event:Event):void{
 			GameConfigObject.textureRelativePath = event.target.name;
 			loadTextureFile();
 		}
 		
-		protected function onAnimationFileSellect(event:Event):void{
-			GameConfigObject.animationRelativePath = event.target.name;
-			loadAnimationFile();
-		}
-		
-		private function onAnimationPictureSellect(event:Event):void{
-			GameConfigObject.animationPicturePath = event.target.name;
-			loadAnimationPicture();
-		}
+//		protected function onAnimationFileSellect(event:Event):void{
+//			GameConfigObject.animationRelativePath = event.target.name;
+//			loadAnimationFile();
+//		}
+//		
+//		private function onAnimationPictureSellect(event:Event):void{
+//			GameConfigObject.animationPicturePath = event.target.name;
+//			loadAnimationPicture();
+//		}
 		
 		public function loadTextureFile():void{
 			new FilesLoader().loadFile( GameConfigObject.textureRelativePath, onTextureJsonLoaded );
 		}
 		
-		public function loadAnimationFile():void{
-			new FilesLoader().loadFile( GameConfigObject.animationRelativePath, onAnmationJsonLoaded );
-		}
-		
-		public function loadAnimationPicture():void{
-			new FilesLoader().loadPicture( GameConfigObject.animationPicturePath, onAnmationPngLoaded );
-		}
+//		public function loadAnimationFile():void{
+//			new FilesLoader().loadFile( GameConfigObject.animationRelativePath, onAnmationJsonLoaded );
+//		}
+//		
+//		public function loadAnimationPicture():void{
+//			new FilesLoader().loadPicture( GameConfigObject.animationPicturePath, onAnmationPngLoaded );
+//		}
 		
 		protected function onTextureJsonLoaded(event:Event):void{
 			var textureObject: Object = JSON.parse( event.target.data );

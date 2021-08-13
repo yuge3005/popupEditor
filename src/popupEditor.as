@@ -12,7 +12,7 @@ package
 	import settings.GameConfigObject;
 	import settings.GameRes;
 	
-	[SWF(width = "1380", height = "1624", frameRate = "30", backgroundColor = "#ffffff")]	
+	[SWF(width = "1250", height = "1624", frameRate = "30", backgroundColor = "#ffffff")]	
 	public class popupEditor extends EditorItem
 	{
 		/**背景区域*/
@@ -44,8 +44,7 @@ package
 			backgroundControl.addEventListener( EditorEvent.REMOVE_ITEM, onRemoveItem );
 ////			backgroundControl.addEventListener( EditorEvent.ADD_ANIMATION, onAddAnimation );
 			backgroundControl.addEventListener( EditorEvent.ITEM_LAYER_UP, onItemLayerUp );
-//			backgroundControl.addEventListener( EditorEvent.CONFIG_LOADED, onLoadSuccess );
-//			backgroundControl.addEventListener( EditorEvent.LOCK_BACKROUND, onLockBackground );
+			backgroundControl.addEventListener( EditorEvent.CONFIG_LOADED, onLoadSuccess );
 		}
 		
 		protected function onItemMove(event:EditorEvent):void{
@@ -71,11 +70,12 @@ package
 		
 		protected function onTexturePngLoaded(event:EditorEvent):void{
 			if( GameConfigObject.tempBackgroundItems ){//是load配置文件后的加载过程
-				if( GameConfigObject.animationPicturePath && GameConfigObject.animationRelativePath ){//而且有动画资源
-					backgroundControl.loadAnimationFile();
-					backgroundControl.loadAnimationPicture();
-				}
-				else buildTempItems();
+//				if( GameConfigObject.animationPicturePath && GameConfigObject.animationRelativePath ){//而且有动画资源
+//					backgroundControl.loadAnimationFile();
+//					backgroundControl.loadAnimationPicture();
+//				}
+//				else buildTempItems();
+				buildTempItems();
 			}
 		}
 		
@@ -99,6 +99,10 @@ package
 		
 		protected function onItemLayerUp(event:EditorEvent):void{
 			backgroundArea.itemLayerUp( event.data );
+		}
+		
+		private function onLoadSuccess( event: EditorEvent ):void{
+			backgroundControl.loadTextureFile();
 		}
 	}
 }

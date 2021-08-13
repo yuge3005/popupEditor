@@ -6,11 +6,8 @@ package controler{
 	import flash.geom.Rectangle;
 	import flash.ui.Keyboard;
 	
-	import fl.controls.CheckBox;
 	import fl.controls.ComboBox;
 	import fl.controls.List;
-	import fl.controls.TextInput;
-	import fl.events.ColorPickerEvent;
 	
 	import settings.EditorEvent;
 	import settings.FilesLoader;
@@ -49,10 +46,6 @@ package controler{
 			textureList = createComboBox( 0, 60 );
 			
 			addButtonAt( 0, 20, 130, "choose texture file", onTextureButton );
-//			addButtonAt( 0, 100, 130, "choose Animation file", onAnimationButton );
-//			addButtonAt( 0, 140, 130, "choose Animation PNG", onAnimationPicButton );
-			
-//			animationList = createComboBox( 0, 180, 130 );
 			
 			backgroundItems = addItemAt( new List, 150, 20, 300 ) as List;
 			backgroundItems.height = 190;
@@ -63,40 +56,14 @@ package controler{
 			new FilesLoader().selectFile( onTextureFileSellect, "json" );
 		}
 		
-//		protected function onAnimationButton(event:MouseEvent):void{
-//			new FilesLoader().selectFile( onAnimationFileSellect, "json" );
-//		}
-//		
-//		protected function onAnimationPicButton(event:MouseEvent):void{
-//			new FilesLoader().selectFile( onAnimationPictureSellect, "png" );
-//		}
-		
 		protected function onTextureFileSellect(event:Event):void{
 			GameConfigObject.textureRelativePath = event.target.name;
 			loadTextureFile();
 		}
 		
-//		protected function onAnimationFileSellect(event:Event):void{
-//			GameConfigObject.animationRelativePath = event.target.name;
-//			loadAnimationFile();
-//		}
-//		
-//		private function onAnimationPictureSellect(event:Event):void{
-//			GameConfigObject.animationPicturePath = event.target.name;
-//			loadAnimationPicture();
-//		}
-		
 		public function loadTextureFile():void{
 			new FilesLoader().loadFile( GameConfigObject.textureRelativePath, onTextureJsonLoaded );
 		}
-		
-//		public function loadAnimationFile():void{
-//			new FilesLoader().loadFile( GameConfigObject.animationRelativePath, onAnmationJsonLoaded );
-//		}
-//		
-//		public function loadAnimationPicture():void{
-//			new FilesLoader().loadPicture( GameConfigObject.animationPicturePath, onAnmationPngLoaded );
-//		}
 		
 		protected function onTextureJsonLoaded(event:Event):void{
 			var textureObject: Object = JSON.parse( event.target.data );
@@ -108,33 +75,14 @@ package controler{
 			new FilesLoader().loadPicture( textureName, onTexturePngLoaded );
 		}
 		
-		private function onAnmationJsonLoaded( event:Event ):void{
-			var mcObject: Object = JSON.parse( event.target.data );
-			
-			GameRes.movieClipFrameData = mcObject.mc;
-			GameRes.movieClipFrameRes = mcObject.res;
-			
-			report( EditorEvent.ANIMATION_FILE_LOADED );
-		}
-		
 		protected function onTexturePngLoaded(event:Event):void{
 			GameRes.texturePic = event.target.loader.content.bitmapData;
 			report( EditorEvent.TEXTURE_PICTURE_LOADED );
 		}
 		
-		private function onAnmationPngLoaded(event:Event):void{
-			GameRes.movieClipPic = event.target.loader.content.bitmapData;
-			report( EditorEvent.ANIMATION_PICTURE_LOADED );
-		}
-		
 		override protected function onTextureItemSellect(event:Event):void{
 			var item: Object = (event.currentTarget as ComboBox).selectedItem.label;
 			report( EditorEvent.ADD_ITEM, item );
-		}
-		
-		override protected function onAnimationComboxItemSellect(event:Event):void{
-			var item: Object = (event.currentTarget as ComboBox).selectedItem;
-			report( EditorEvent.ADD_ANIMATION, item.label );
 		}
 		
 		public function refreshItemList(items:Array):void{
@@ -174,13 +122,6 @@ package controler{
 					textureList.selectedIndex = j;
 					if( textureList.selectedItem.label == items[i].name ){
 						report( EditorEvent.ADD_ITEM, textureList.selectedItem.label );
-						break;
-					}
-				}
-				for( j = 0; j < animationList.length; j++ ){
-					animationList.selectedIndex = j;
-					if( animationList.selectedItem.label == items[i].name ){
-						report( EditorEvent.ADD_ANIMATION, animationList.selectedItem.label );
 						break;
 					}
 				}

@@ -37,12 +37,9 @@ package
 			backgroundControl = addItemAt( new BakgroundEditorControl, 770, 0 ) as BakgroundEditorControl;
 			backgroundControl.addEventListener( EditorEvent.TEXTURE_FILE_LOADED, onTextrueFileLoad );
 			backgroundControl.addEventListener( EditorEvent.TEXTURE_PICTURE_LOADED, onTexturePngLoaded );
-////			backgroundControl.addEventListener( EditorEvent.ANIMATION_FILE_LOADED, onAnimationFileLoaded );
-////			backgroundControl.addEventListener( EditorEvent.ANIMATION_PICTURE_LOADED, onAnimationPictureLoaded );
 			backgroundControl.addEventListener( EditorEvent.ADD_ITEM, onAddItem );
 			backgroundControl.addEventListener( EditorEvent.MOVE_ITEM, onMoveItem );
 			backgroundControl.addEventListener( EditorEvent.REMOVE_ITEM, onRemoveItem );
-////			backgroundControl.addEventListener( EditorEvent.ADD_ANIMATION, onAddAnimation );
 			backgroundControl.addEventListener( EditorEvent.ITEM_LAYER_UP, onItemLayerUp );
 			backgroundControl.addEventListener( EditorEvent.CONFIG_LOADED, onLoadSuccess );
 		}
@@ -70,11 +67,6 @@ package
 		
 		protected function onTexturePngLoaded(event:EditorEvent):void{
 			if( GameConfigObject.tempBackgroundItems ){//是load配置文件后的加载过程
-//				if( GameConfigObject.animationPicturePath && GameConfigObject.animationRelativePath ){//而且有动画资源
-//					backgroundControl.loadAnimationFile();
-//					backgroundControl.loadAnimationPicture();
-//				}
-//				else buildTempItems();
 				buildTempItems();
 			}
 		}
@@ -92,10 +84,6 @@ package
 		protected function onRemoveItem(event:EditorEvent):void{
 			backgroundArea.removeItem( event.data );
 		}
-		
-//		protected function onAddAnimation(event:EditorEvent):void{
-//			backgroundArea.addMovieClip( event.data, GameRes.movieClipFrameRes, GameRes.movieClipPic )
-//		}
 		
 		protected function onItemLayerUp(event:EditorEvent):void{
 			backgroundArea.itemLayerUp( event.data );

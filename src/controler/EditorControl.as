@@ -22,8 +22,6 @@ package controler{
 		
 		/**素材名表*/		
 		protected var textureList: ComboBox;
-		/**动画素材名表*/
-		protected var animationList: ComboBox;
 		
 		public function EditorControl(){
 		}
@@ -45,26 +43,8 @@ package controler{
 			textureList.enabled = true;
 		}
 		
-		public function onAnimationFileLoaded():void{			
-			var movieClips: Object = GameRes.movieClipFrameData;
-			animationList.removeAll();
-			for( var ob: Object in movieClips ){
-				animationList.addItem( { label: ob } );
-			}
-			animationList.addEventListener(ComponentEvent.ENTER, onAnimationComboxItemSellect );
-			animationList.addEventListener(Event.CHANGE, onAnimationComboxItemSellect );
-		}
-		
 		protected function onTextureItemSellect(event:Event):void{
 			//need be override by sub class
-		}
-		
-		protected function onAnimationComboxItemSellect(event:Event):void{
-			//TODO Auto-generated method stub
-		}
-		
-		public function enableAnimationList():void{
-			animationList.enabled = true;
 		}
 		
 		protected function bubbleEvent(event:EditorEvent):void{

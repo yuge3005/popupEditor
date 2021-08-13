@@ -19,15 +19,6 @@ package gameUI{
 			addGameAreaItem( sp, new Point, EditorEvent.ITEM_CHANGE );
 		}
 		
-		public function addMovieClip( name: String, movieClipFile: Object, movieClipPic: BitmapData ):void{
-			var obj: Object = GameRes.movieClipFrameData[ name ];
-			var sp: TextureMc = new TextureMc( obj, movieClipFile, movieClipPic );
-			sp.name = name;
-			addChild( sp );
-			sp.addEventListener( MouseEvent.MOUSE_DOWN, onGameAreaItemDrag );
-			report( EditorEvent.ITEM_CHANGE );
-		}
-		
 		protected override function onGameAreaItemEndDrag(event:MouseEvent):void{
 			super.onGameAreaItemEndDrag( event );
 			report( EditorEvent.ITEM_MOVE );

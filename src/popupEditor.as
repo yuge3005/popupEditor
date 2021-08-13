@@ -1,5 +1,6 @@
 package
 {
+	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	
 	import controler.BakgroundEditorControl;
@@ -9,6 +10,7 @@ package
 	import settings.EditorEvent;
 	import settings.EditorItem;
 	import settings.GameConfigObject;
+	import settings.GameRes;
 	
 	[SWF(width = "1380", height = "1624", frameRate = "30", backgroundColor = "#ffffff")]	
 	public class popupEditor extends EditorItem
@@ -22,6 +24,7 @@ package
 		public function popupEditor()
 		{
 			stage.scaleMode = StageScaleMode.SHOW_ALL;
+			stage.align = StageAlign.TOP;
 			initBackgroundEditor();
 		}
 		
@@ -37,10 +40,10 @@ package
 ////			backgroundControl.addEventListener( EditorEvent.ANIMATION_FILE_LOADED, onAnimationFileLoaded );
 ////			backgroundControl.addEventListener( EditorEvent.ANIMATION_PICTURE_LOADED, onAnimationPictureLoaded );
 			backgroundControl.addEventListener( EditorEvent.ADD_ITEM, onAddItem );
-//			backgroundControl.addEventListener( EditorEvent.MOVE_ITEM, onMoveItem );
-//			backgroundControl.addEventListener( EditorEvent.REMOVE_ITEM, onRemoveItem );
+			backgroundControl.addEventListener( EditorEvent.MOVE_ITEM, onMoveItem );
+			backgroundControl.addEventListener( EditorEvent.REMOVE_ITEM, onRemoveItem );
 ////			backgroundControl.addEventListener( EditorEvent.ADD_ANIMATION, onAddAnimation );
-//			backgroundControl.addEventListener( EditorEvent.ITEM_LAYER_UP, onItemLayerUp );
+			backgroundControl.addEventListener( EditorEvent.ITEM_LAYER_UP, onItemLayerUp );
 //			backgroundControl.addEventListener( EditorEvent.CONFIG_LOADED, onLoadSuccess );
 //			backgroundControl.addEventListener( EditorEvent.LOCK_BACKROUND, onLockBackground );
 		}
@@ -80,6 +83,22 @@ package
 			backgroundControl.adTempItems();
 			backgroundArea.repositeTempItems();
 			GameConfigObject.tempBackgroundItems = null;
+		}
+		
+		protected function onMoveItem(event: EditorEvent):void{
+			backgroundArea.moveItem( event.data.i, event.data.pt );
+		}
+		
+		protected function onRemoveItem(event:EditorEvent):void{
+			backgroundArea.removeItem( event.data );
+		}
+		
+//		protected function onAddAnimation(event:EditorEvent):void{
+//			backgroundArea.addMovieClip( event.data, GameRes.movieClipFrameRes, GameRes.movieClipPic )
+//		}
+		
+		protected function onItemLayerUp(event:EditorEvent):void{
+			backgroundArea.itemLayerUp( event.data );
 		}
 	}
 }

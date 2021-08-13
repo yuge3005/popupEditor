@@ -21,7 +21,7 @@ package controler{
 		
 		public function BakgroundEditorControl(){
 			
-			drawBackground( 0xFFEEFF, new Rectangle( -20,0, 500, 270 ) );
+			drawBackground( 0xFFEEFF, new Rectangle( -20,0, 500, 220 ) );
 
 			addTextureChooser();
 			
@@ -75,6 +75,7 @@ package controler{
 			var textureName: String = textureObject.file;
 			var frames: Object =  textureObject.frames;
 			GameRes.textureData = frames;
+			GameRes.textureOrigen = event.target.data;
 			
 			report( EditorEvent.TEXTURE_FILE_LOADED );
 			new FilesLoader().loadPicture( textureName, onTexturePngLoaded );

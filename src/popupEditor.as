@@ -4,6 +4,7 @@ package
 	import flash.display.StageScaleMode;
 	
 	import controler.BakgroundEditorControl;
+	import controler.NikeNameControl;
 	
 	import gameUI.BackgroundLayer;
 	
@@ -26,6 +27,8 @@ package
 			stage.scaleMode = StageScaleMode.SHOW_ALL;
 			stage.align = StageAlign.TOP;
 			initBackgroundEditor();
+			
+			addItemAt( new NikeNameControl, 770, 220 );
 		}
 		
 		private function initBackgroundEditor():void{

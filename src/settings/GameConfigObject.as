@@ -26,8 +26,10 @@ package settings{
 		
 		private static function getExporteObject():Object{
 			var obj: Object = {};
+			trace( JSON.stringify( GameRes.textureOrigen ) )
 //			obj.textureRelativePath = textureRelativePath;
 //			obj.backgroundItems = backgroundItems;
+			trace( JSON.stringify( backgroundItems ) );
 			return obj;
 		}
 		

@@ -7,6 +7,8 @@ package settings{
 
 	public class GameRes{
 
+		/**素材的原始字符串*/		
+		public static var textureOrigen: String;
 		/**素材配置对象*/
 		public static var textureData: Object;
 		/**素材图*/

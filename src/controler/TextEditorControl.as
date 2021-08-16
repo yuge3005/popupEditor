@@ -60,16 +60,27 @@ package controler
 				graphicLayer.parent.removeChild( graphicLayer );
 			}
 			else{
-				textItems.push( new TextInfoItem( graphicLayer ) );
+				var textItem: TextInfoItem = new TextInfoItem( graphicLayer );
+				textItem.addEventListener( EditorEvent.DELETE_TEXT, onTextDelete );
+				addChild( textItem );
+				textItems.push( textItem );
 				flushTextItems();
-				report( EditorEvent.TEXT_ADD, getItems() );
+				report( EditorEvent.TEXT_CHANCGE, getItems() );
 			}
+		}
+		
+		private function onTextDelete( event: EditorEvent ): void{
+			var textItem: TextInfoItem = event.target as TextInfoItem;
+			textItem.removeEventListener( EditorEvent.DELETE_TEXT, onTextDelete );
+			removeChild( textItem );
+			textItems.splice( textItems.indexOf( textItem ), 1 );
+			flushTextItems();
+			report( EditorEvent.TEXT_CHANCGE, getItems() );
 		}
 		
 		private function flushTextItems(): void{
 			for( var i: int = 0; i < textItems.length; i++ ){
 				textItems[i].y = 60 + i * 40;
-				addChild( textItems[i] );
 			}
 		}
 		

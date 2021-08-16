@@ -1,19 +1,23 @@
 package controler
 {
 	import flash.display.Shape;
+	import flash.events.MouseEvent;
 	
-	import settings.EditorItem;
+	import settings.EditorEvent;
 	
-	public class TextInfoItem extends EditorItem{
+	public class TextInfoItem extends EditorControl{
 		
 		public var textItemRange: Shape;
 		
 		public function TextInfoItem( item: Shape ){
 			this.textItemRange = item;
 			
-			graphics.beginFill(0);
-			graphics.drawRect( 0, 0, 120, 20 );
-			graphics.endFill();
+			addButtonAt( 0, 0, 60, "delete", onDeleteButtonClick );
+		}
+		
+		private function onDeleteButtonClick( event: MouseEvent ):void
+		{
+			report( EditorEvent.DELETE_TEXT );
 		}
 	}
 }

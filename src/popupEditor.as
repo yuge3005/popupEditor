@@ -58,7 +58,7 @@ package
 		private function initTextEditor(): void{
 			textArea = addItemAt( new TextLayer, 0, 0 ) as TextLayer;
 			textControl = addItemAt( new TextEditorControl, 770, 450 ) as TextEditorControl;
-			textControl.addEventListener( EditorEvent.TEXT_ADD, onTextAdd );
+			textControl.addEventListener( EditorEvent.TEXT_CHANCGE, onTextAdd );
 		}
 		
 		protected function onItemMove(event:EditorEvent):void{

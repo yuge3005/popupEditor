@@ -58,6 +58,7 @@ package
 		private function initTextEditor(): void{
 			textArea = addItemAt( new TextLayer, 0, 0 ) as TextLayer;
 			textControl = addItemAt( new TextEditorControl, 770, 450 ) as TextEditorControl;
+			textControl.addEventListener( EditorEvent.TEXT_ADD, onTextAdd );
 		}
 		
 		protected function onItemMove(event:EditorEvent):void{
@@ -108,6 +109,10 @@ package
 		
 		private function onLoadSuccess( event: EditorEvent ):void{
 			backgroundControl.loadTextureFile();
+		}
+		
+		private function onTextAdd( event: EditorEvent ):void{
+			textArea.resetItemPosition( event.data );
 		}
 	}
 }

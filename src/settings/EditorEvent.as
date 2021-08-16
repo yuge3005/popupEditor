@@ -25,6 +25,9 @@ package settings{
 		/**物体发生变化，移除、添加，层级上升时*/
 		public static const ITEM_CHANGE:String = "itemChange";
 		
+		/**添加文本框*/
+		public static const TEXT_ADD: String = "textAdd";
+		
 		public function EditorEvent(type:String, data: * = null ){
 			super( type );
 			this.data = data;

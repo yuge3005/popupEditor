@@ -10,7 +10,7 @@ package gameUI{
 	public class BackgroundLayer extends GameArea{
 		
 		public function BackgroundLayer(){
-			drawBackgroundOn( 0 );
+			drawBackgroundOn( 0x888888 );
 		}
 		
 		public function addBackgroundItem( name: String ):void{

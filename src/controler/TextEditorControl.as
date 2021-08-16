@@ -20,7 +20,7 @@ package controler
 		
 		public function TextEditorControl()
 		{
-			drawBackground( 0xEEFFFF, new Rectangle( -20,0, 500, 250 ) );
+			drawBackground( 0xEEFFFF, new Rectangle( -20,0, 500, 260 ) );
 			checkBox = addCheckBox( 0, 20, 130, "add Text", addTextItem );
 		}
 		
@@ -37,14 +37,19 @@ package controler
 			stage.addEventListener( MouseEvent.MOUSE_OUT, dragEnd );
 			stage.addEventListener( MouseEvent.MOUSE_UP, dragEnd );
 			graphicLayer = new Shape;
+			graphicLayer.x = startPt.x;
+			graphicLayer.y = startPt.y;
 			stage.addChild( graphicLayer );
 		}
 		
 		private function dragMove( event: MouseEvent ): void{
-			var movePoint: Point = new Point( event.stageX, event.stageY );
+			drawRange( event.stageX, event.stageY );
+		}
+		
+		private function drawRange( movePointX: int, movePointY: int ): void{
 			graphicLayer.graphics.clear();
 			graphicLayer.graphics.beginFill( 0, 0.5 );
-			graphicLayer.graphics.drawRect( startPt.x, startPt.y, movePoint.x - startPt.x, movePoint.y - startPt.y );
+			graphicLayer.graphics.drawRect( 0, 0, movePointX - startPt.x, movePointY - startPt.y );
 			graphicLayer.graphics.endFill();
 		}
 		
@@ -55,8 +60,9 @@ package controler
 			stage.removeEventListener( MouseEvent.MOUSE_DOWN, dragStart );
 			stage.mouseChildren = true;
 			checkBox.selected = false;
+			drawRange( event.stageX, event.stageY );
 			
-			if( graphicLayer.width < 10 || graphicLayer.height < 10 ){
+			if( graphicLayer.width < 10 || graphicLayer.height < 10 || textItems.length >= 5 ){
 				graphicLayer.parent.removeChild( graphicLayer );
 			}
 			else{

@@ -133,9 +133,5 @@ package controler{
 				}
 			}
 		}
-		
-		protected function onCheckBoxChange(event:Event):void{
-			report( EditorEvent.LOCK_BACKROUND, event.target.selected );
-		}
 	}
 }

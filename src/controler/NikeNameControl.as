@@ -15,7 +15,7 @@ package controler
 		{
 			super();
 			
-			drawBackground( 0xFFFFEE, new Rectangle( -20,0, 800, 230 ) );
+			drawBackground( 0xFFFFEE, new Rectangle( -20,0, 500, 230 ) );
 			addTipAt( 0, 20, 130, "nike name:", 60 );
 			
 			nikeNameList = new Vector.<Vector.<TextInput>>;

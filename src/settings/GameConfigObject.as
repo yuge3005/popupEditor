@@ -28,13 +28,29 @@ package settings{
 			return obj;
 		}
 		
-		private static function getExporteObject():Object{
+		private static function getExporteString():String{
 			var obj: Object = {};
-			trace( JSON.stringify( GameRes.textureOrigen ) )
-//			obj.textureRelativePath = textureRelativePath;
-//			obj.backgroundItems = backgroundItems;
-			trace( JSON.stringify( backgroundItems ) );
-			return obj;
+			var originStr: String = GameRes.textureOrigen.substring( 0, GameRes.textureOrigen.length - 1 );
+			var nikeNameString: String = getNikeNamesString( NikeNameControl.getNikeNameList(), backgroundItems );
+			if( nikeNameString ){
+				originStr += ",\n" + nikeNameString + "}";
+			}
+			return originStr;
+		}
+		
+		private static function getNikeNamesString( nikeObj: Object, ar: Array ): String{
+			var assetsObj: Object = {};
+			for( var ob: Object in nikeObj ){
+				for( var i: int = 0; i < ar.length; i++ ){
+					if( ar[i].name == ob ){
+						ar[i].x = Math.round(ar[i].x);
+						ar[i].y = Math.round(ar[i].y);
+						assetsObj[nikeObj[ob]] = ar[i];
+					}
+				}
+			}
+			var str: String = JSON.stringify( assetsObj );
+			return str.substring( 1, str.length - 1 );
 		}
 		
 		public static function clearBackgroundItems():void{
@@ -52,7 +68,7 @@ package settings{
 		}
 		
 		public static function exporte():void{
-			var str: String = JSON.stringify( getExporteObject() );
+			var str: String = getExporteString();
 			var file: FileReference = new FileReference;
 			file.save( str, "exported file name.json" );
 		}

@@ -1,5 +1,7 @@
 package controler
 {
+	import flash.geom.Rectangle;
+	
 	import fl.controls.TextInput;
 	
 	import settings.GameConfigObject;
@@ -12,6 +14,8 @@ package controler
 		public function NikeNameControl()
 		{
 			super();
+			
+			drawBackground( 0xFFFFEE, new Rectangle( -20,0, 800, 230 ) );
 			addTipAt( 0, 20, 130, "nike name:", 60 );
 			
 			nikeNameList = new Vector.<Vector.<TextInput>>;
@@ -61,6 +65,7 @@ package controler
 			for( var ob: Object in nms ){
 				nikeNameList[index][0].text = ob;
 				nikeNameList[index][1].text = nms[ob];
+				index++;
 			}
 		}
 	}

@@ -1,0 +1,6 @@
+{"file":"welcome_bonus.png","frames":{
+"reward":{"x":0,"y":0,"w":597,"h":401,"offX":0,"offY":0,"sourceW":597,"sourceH":401},
+"ok":{"x":0,"y":872,"w":356,"h":123,"offX":1,"offY":1,"sourceW":358,"sourceH":124},
+"blank_bg":{"x":0,"y":997,"w":5,"h":5,"offX":0,"offY":0,"sourceW":750,"sourceH":1080},
+"award":{"x":0,"y":403,"w":492,"h":467,"offX":2,"offY":0,"sourceW":494,"sourceH":467}},
+"okBtn":{"x":197,"y":1222,"name":"ok"},"title":{"x":85,"y":278,"name":"reward"},"present":{"x":129,"y":708,"name":"award"}}

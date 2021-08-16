@@ -5,8 +5,10 @@ package
 	
 	import controler.BakgroundEditorControl;
 	import controler.NikeNameControl;
+	import controler.TextEditorControl;
 	
 	import gameUI.BackgroundLayer;
+	import gameUI.TextLayer;
 	
 	import settings.EditorEvent;
 	import settings.EditorItem;
@@ -21,6 +23,12 @@ package
 		/**背景编辑控制区*/
 		private var backgroundControl: BakgroundEditorControl;
 
+		/**文本区域*/		
+		private var textArea: TextLayer;
+		
+		/**文本编辑控制区*/		
+		private var textControl: TextEditorControl;
+
 		public function popupEditor()
 		{
 			stage.scaleMode = StageScaleMode.SHOW_ALL;
@@ -28,6 +36,7 @@ package
 			initBackgroundEditor();
 			
 			addItemAt( new NikeNameControl, 770, 220 );
+			initTextEditor();
 		}
 		
 		private function initBackgroundEditor():void{
@@ -44,6 +53,11 @@ package
 			backgroundControl.addEventListener( EditorEvent.REMOVE_ITEM, onRemoveItem );
 			backgroundControl.addEventListener( EditorEvent.ITEM_LAYER_UP, onItemLayerUp );
 			backgroundControl.addEventListener( EditorEvent.CONFIG_LOADED, onLoadSuccess );
+		}
+		
+		private function initTextEditor(): void{
+			textArea = addItemAt( new TextLayer, 0, 0 ) as TextLayer;
+			textControl = addItemAt( new TextEditorControl, 770, 450 ) as TextEditorControl;
 		}
 		
 		protected function onItemMove(event:EditorEvent):void{

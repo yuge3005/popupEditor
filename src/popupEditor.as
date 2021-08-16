@@ -11,7 +11,6 @@ package
 	import settings.EditorEvent;
 	import settings.EditorItem;
 	import settings.GameConfigObject;
-	import settings.GameRes;
 	
 	[SWF(width = "1250", height = "1624", frameRate = "30", backgroundColor = "#ffffff")]	
 	public class popupEditor extends EditorItem
@@ -77,6 +76,7 @@ package
 		private function buildTempItems():void{
 			backgroundControl.adTempItems();
 			backgroundArea.repositeTempItems();
+			NikeNameControl.instance.adTempItems();
 			GameConfigObject.tempBackgroundItems = null;
 		}
 		

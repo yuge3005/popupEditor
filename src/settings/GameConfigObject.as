@@ -1,6 +1,8 @@
 package settings{
 	import flash.events.Event;
 	import flash.net.FileReference;
+	
+	import controler.NikeNameControl;
 
 	public class GameConfigObject{
 		
@@ -11,6 +13,7 @@ package settings{
 		public static var backgroundItems: Array = [];
 		
 		public static var tempBackgroundItems: Array;
+		public static var nikeNames: Object
 		
 		private static var successCallback: Function;
 		
@@ -21,6 +24,7 @@ package settings{
 			var obj: Object = {};
 			obj.textureRelativePath = textureRelativePath;
 			obj.backgroundItems = backgroundItems;
+			obj.nikeNames = NikeNameControl.getNikeNameList();
 			return obj;
 		}
 		
@@ -69,6 +73,7 @@ package settings{
 			textureRelativePath = obj.textureRelativePath;
 			successCallback();
 			
+			nikeNames = obj.nikeNames;
 			tempBackgroundItems = obj.backgroundItems;
 		}
 	}

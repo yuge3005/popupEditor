@@ -18,10 +18,14 @@ package controler
 		private var checkBox: CheckBox;
 		private var textItems: Vector.<TextInfoItem> = Vector.<TextInfoItem>([]);
 		
+		public static var instance: TextEditorControl;
+		
 		public function TextEditorControl()
 		{
 			drawBackground( 0xEEFFFF, new Rectangle( -20,0, 500, 460 ) );
 			checkBox = addCheckBox( 0, 20, 130, "add Text", addTextItem );
+			
+			instance = this;
 		}
 		
 		private function addTextItem( event: Event ): void{
@@ -96,6 +100,29 @@ package controler
 				ar.push( textItems[i].textItemRange );
 			}
 			return ar;
+		}
+		
+		private function getTextItemList(): Object{
+			var list: Object = {};
+			var count: int = 0;
+			for( var i: int = 0; i < textItems.length; i++ ){
+				var textItem: Object = textItems[i].getTextItem();
+				if( textItem ){
+					list[textItem.name] = textItem;
+					delete textItem.name;
+					count++;
+				}
+			}
+			if( count ) return list;
+			return null;
+		}
+		
+		public static function getTextItems(): Object{
+			return instance.getTextItemList();
+		}
+		
+		public function adTempText(): void{
+			
 		}
 	}
 }

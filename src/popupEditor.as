@@ -92,6 +92,7 @@ package
 			backgroundControl.adTempItems();
 			backgroundArea.repositeTempItems();
 			NikeNameControl.instance.adTempItems();
+			TextEditorControl.instance.adTempText();
 			GameConfigObject.tempBackgroundItems = null;
 		}
 		

@@ -8,6 +8,7 @@ package controler
 	import fl.controls.ColorPicker;
 	import fl.controls.ComboBox;
 	import fl.controls.NumericStepper;
+	import fl.controls.TextInput;
 	import fl.events.ColorPickerEvent;
 	
 	import settings.EditorEvent;
@@ -15,6 +16,7 @@ package controler
 	public class TextInfoItem extends EditorControl{
 		
 		public var textItemRange: Shape;
+		private var nameInput: TextInput;
 		private var colorChooser: ColorPicker;
 		private var textSize: NumericStepper;
 		private var fontList: ComboBox;
@@ -25,7 +27,7 @@ package controler
 		public function TextInfoItem( item: Shape ){
 			this.textItemRange = item;
 			
-			addTextInputWithLabel( 0, 0, 120, "name:", 80 );
+			nameInput = addTextInputWithLabel( 0, 0, 120, "name:", 80 );
 			colorChooser = addColorChooser( 130, 0, 85, "text color:", onColorChange );
 			textSize = addNumericStepper( 220, 0, 100, "text size:", onSetSize, 150 );
 			alignList = createAlignComboBox();
@@ -68,11 +70,26 @@ package controler
 		}
 		
 		protected function onColorChange(event:ColorPickerEvent):void{
-			
+			//do nothing
 		}
 		
 		private function onSetSize( event: Event ):void{
-			event.target.value;
+			//do nothing
+		}
+		
+		public function getTextItem(): Object{
+			if( nameInput.text == "" )	return null;
+			var obj: Object = {};
+			obj.name = nameInput.text;
+			var item: Shape = textItemRange;
+			obj.rect = { x: item.x, y: item.y, width: item.width, height: item.height };
+			obj.color = colorChooser.selectedColor;
+			obj.size = textSize.value;
+			obj.font = fontList.selectedItem.label;
+			obj.align = alignList.selectedItem.label;
+			obj.stroke = strokeSize.value;
+			obj.strokeColor = strokeColorChooser.selectedColor;
+			return obj;
 		}
 	}
 }

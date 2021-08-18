@@ -9,6 +9,7 @@ package controler
 	import fl.controls.CheckBox;
 	
 	import settings.EditorEvent;
+	import settings.GameConfigObject;
 
 	public class TextEditorControl extends EditorControl
 	{
@@ -122,7 +123,25 @@ package controler
 		}
 		
 		public function adTempText(): void{
-			
+			var textItemList: Object = GameConfigObject.textItems;
+			textItems.length = 0;
+			for( var ob: Object in textItemList ){
+				textItemList[ob].name = ob;
+				var rect: Object = textItemList[ob].rect;
+				var sp: Shape = new Shape;
+				sp.graphics.beginFill( 0, 0.5 );
+				sp.graphics.drawRect( 0, 0, rect.width, rect.height );
+				sp.graphics.endFill();
+				sp.x = rect.x;
+				sp.y = rect.y;
+				var textItem: TextInfoItem = new TextInfoItem( sp );
+				textItem.addEventListener( EditorEvent.DELETE_TEXT, onTextDelete );
+				addChild( textItem );
+				textItems.push( textItem );
+				textItem.setStatusByData( textItemList[ob] );
+			}
+			flushTextItems();
+			report( EditorEvent.TEXT_CHANCGE, getItems() );
 		}
 	}
 }

@@ -91,5 +91,25 @@ package controler
 			obj.strokeColor = strokeColorChooser.selectedColor;
 			return obj;
 		}
+		
+		public function setStatusByData( obj: Object ): void{
+			nameInput.text = obj.name;
+			colorChooser.selectedColor = obj.color;
+			textSize.value = obj.size;
+			strokeSize.value = obj.stroke;
+			strokeColorChooser.selectedColor = obj.strokeColor;
+			getComboItemIndex( fontList, obj.font );
+			getComboItemIndex( alignList, obj.align );
+		}
+		
+		private function getComboItemIndex( cbm: ComboBox, label: String ): int{
+			for( var i: int = 0; i< cbm.length; i++ ){
+				if( cbm.getItemAt( i ).label == label ){
+					cbm.selectedIndex = i;
+					return i;
+				}
+			}
+			return -1;
+		}
 	}
 }

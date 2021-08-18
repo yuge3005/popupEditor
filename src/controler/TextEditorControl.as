@@ -16,11 +16,11 @@ package controler
 		private var graphicLayer: Shape;
 		
 		private var checkBox: CheckBox;
-		private var textItems: Array = [];
+		private var textItems: Vector.<TextInfoItem> = Vector.<TextInfoItem>([]);
 		
 		public function TextEditorControl()
 		{
-			drawBackground( 0xEEFFFF, new Rectangle( -20,0, 500, 260 ) );
+			drawBackground( 0xEEFFFF, new Rectangle( -20,0, 500, 460 ) );
 			checkBox = addCheckBox( 0, 20, 130, "add Text", addTextItem );
 		}
 		
@@ -86,12 +86,12 @@ package controler
 		
 		private function flushTextItems(): void{
 			for( var i: int = 0; i < textItems.length; i++ ){
-				textItems[i].y = 60 + i * 40;
+				textItems[i].y = 60 + i * 80;
 			}
 		}
 		
-		private function getItems(): Array{
-			var ar: Array = [];
+		private function getItems(): Vector.<Shape>{
+			var ar: Vector.<Shape> = Vector.<Shape>([]);
 			for( var i: int = 0; i < textItems.length; i++ ){
 				ar.push( textItems[i].textItemRange );
 			}

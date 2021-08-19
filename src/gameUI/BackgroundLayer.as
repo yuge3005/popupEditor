@@ -15,7 +15,7 @@ package gameUI{
 		
 		public function addBackgroundItem( name: String ):void{
 			var sp: Sprite = GameRes.buildItemByName( name, !this.numChildren );
-			addGameAreaItem( sp, new Point, EditorEvent.ITEM_CHANGE );
+			addGameAreaItem( sp, new Point( sp.x, sp.y ), EditorEvent.ITEM_CHANGE );
 		}
 		
 		protected override function onGameAreaItemEndDrag(event:MouseEvent):void{

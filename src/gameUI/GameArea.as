@@ -34,10 +34,8 @@ package gameUI{
 		}
 		
 		protected function addGameAreaItem( sp: DisplayObject, pt: Point, eventName: String ): void{
-			if( this.numChildren ){
-				sp.x = pt.x;
-				sp.y = pt.y;
-			}
+			sp.x = pt.x;
+			sp.y = pt.y;
 			addChild( sp );
 			sp.addEventListener( MouseEvent.MOUSE_DOWN, onGameAreaItemDrag );
 			report( eventName );

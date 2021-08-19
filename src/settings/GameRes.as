@@ -2,6 +2,7 @@ package settings{
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	import flash.geom.Matrix;
+	import flash.geom.Point;
 	
 	import gameUI.GameArea;
 
@@ -13,6 +14,8 @@ package settings{
 		public static var textureData: Object;
 		/**素材图*/
 		public static var texturePic: BitmapData;
+		/**背景位置*/
+		public static var bgPosition: Point;
 		
 		public function GameRes(){
 		}
@@ -27,6 +30,7 @@ package settings{
 			if( isBg ){
 				sp.x = GameArea.gameAreaWidth - obj.sourceW >> 1;
 				sp.y = GameArea.gameAreaHeight - obj.sourceH >> 1;
+				bgPosition = new Point( sp.x, sp.y );
 			}
 			return sp;
 		}

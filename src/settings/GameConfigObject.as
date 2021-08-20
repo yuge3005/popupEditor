@@ -1,6 +1,7 @@
 package settings{
 	import flash.events.Event;
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import flash.net.FileReference;
 	
 	import controler.NikeNameControl;
@@ -37,8 +38,13 @@ package settings{
 			var originStr: String = GameRes.textureOrigen.substring( 0, GameRes.textureOrigen.length - 1 );
 			var nikeNameString: String = getNikeNamesString( NikeNameControl.getNikeNameList(), backgroundItems );
 			if( nikeNameString ){
-				originStr += ",\n" + nikeNameString + "}";
+				originStr += ",\n" + nikeNameString;
 			}
+			var textDataString: String = getTextDataString( TextEditorControl.getTextItems() );
+			if( textDataString ){
+				originStr += ",\n" + textDataString;
+			}
+			originStr += "}";
 			return originStr;
 		}
 		
@@ -55,6 +61,25 @@ package settings{
 				}
 			}
 			var str: String = JSON.stringify( assetsObj );
+			return str.substring( 1, str.length - 1 );
+		}
+		
+		private static function getTextDataString( textItems: Object ): String{
+			var textObj: Object = {};
+			if( textItems ){
+				textObj = textItems;
+				var bgPt: Point = GameRes.bgPosition;
+				for( var ob: Object in textObj ){
+					var rect: Object = textObj[ob].rect;
+					rect.x = Math.round(rect.x - bgPt.x);
+					rect.y = Math.round(rect.y - bgPt.y);
+					rect.w = Math.round( rect.width );
+					rect.h = Math.round( rect.height );
+					delete rect.width;
+					delete rect.height;
+				}
+			}
+			var str: String = JSON.stringify( textObj );
 			return str.substring( 1, str.length - 1 );
 		}
 		

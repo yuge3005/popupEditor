@@ -1,5 +1,6 @@
 package settings{
 	import flash.events.Event;
+	import flash.geom.Point;
 	import flash.net.FileReference;
 	
 	import controler.NikeNameControl;
@@ -43,11 +44,12 @@ package settings{
 		
 		private static function getNikeNamesString( nikeObj: Object, ar: Array ): String{
 			var assetsObj: Object = {};
+			var bgPt: Point = GameRes.bgPosition;
 			for( var ob: Object in nikeObj ){
 				for( var i: int = 0; i < ar.length; i++ ){
 					if( ar[i].name == ob ){
-						ar[i].x = Math.round(ar[i].x);
-						ar[i].y = Math.round(ar[i].y);
+						ar[i].x = Math.round(ar[i].x - bgPt.x);
+						ar[i].y = Math.round(ar[i].y - bgPt.y);
 						assetsObj[nikeObj[ob]] = ar[i];
 					}
 				}

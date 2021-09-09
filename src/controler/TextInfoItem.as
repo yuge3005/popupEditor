@@ -43,15 +43,17 @@ package controler
 		
 		private function createFontComboBox(): ComboBox{
 			var cmb: ComboBox = createComboBox( 370, 40, 100 );
-			cmb.addItem( { label: "arial" } );
+			cmb.addItem( { label: "luckiest" } );
+			cmb.addItem( { label: "arialbd" } );
+			cmb.addItem( { label: "rifficfree" } );
+			cmb.addItem( { label: "framd" } );
 			cmb.addItem( { label: "FRAHV_0" } );
+			cmb.addItem( { label: "FRADM_0" } );
+			cmb.addItem( { label: "arial" } );
+			cmb.addItem( { label: "ariblk" } ); 
+			cmb.addItem( { label: "FRABKIT_0" } );
 			cmb.addItem( { label: "bahnschrift" } );
 			cmb.addItem( { label: "FRABK_0" } );
-			cmb.addItem( { label: "FRABKIT_0" } );
-			cmb.addItem( { label: "FRADM_0" } );
-			cmb.addItem( { label: "rifficfree" } );
-			cmb.addItem( { label: "luckiest" } );
-			cmb.addItem( { label: "framd" } );
 			cmb.enabled = true;
 			return cmb;
 		}

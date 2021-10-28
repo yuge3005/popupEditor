@@ -14,7 +14,7 @@ package
 	import settings.EditorItem;
 	import settings.GameConfigObject;
 	
-	[SWF(width = "1250", height = "1624", frameRate = "30", backgroundColor = "#ffffff")]	
+	[SWF(width = "1250", height = "1624", frameRate = "30", backgroundColor = "#ffffff")]
 	public class popupEditor extends EditorItem
 	{
 		/**背景区域*/
